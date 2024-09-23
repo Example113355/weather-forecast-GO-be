@@ -7,6 +7,7 @@ from ..utils.function import get_random_code
 from ..models import EmailCode, EmailLocation
 from ..services.mail import MailService
 from django.db import transaction
+from ..services.background_task import daily_weather_email
 
 class WeatherService:
     def get_weather_information(self, location: str):
@@ -56,6 +57,8 @@ class WeatherService:
             new_locations = [location for location in locations if location not in existing_locations]
             email_locations = [EmailLocation(email=email, location=location) for location in new_locations]
             EmailLocation.objects.bulk_create(email_locations)
+
+            daily_weather_email(email, schedule=10, repeat=10)
 
         else:
             existing_locations = EmailLocation.objects.filter(email=email, location__in=locations)

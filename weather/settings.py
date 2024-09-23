@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'weather_api',
     'corsheaders',
+    'background_task'
 ]
 
 MIDDLEWARE = [

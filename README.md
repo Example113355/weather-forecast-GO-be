@@ -41,3 +41,7 @@ After that, run the command to get to the VE:
     ```
     python manage.py runserver
     ```
+9. Run this commant on another terminal for background tasks: (with the background tasks, i'm setting it to send email after 10s and every 10s later)
+    ```
+    python manage.py process_tasks
+    ```

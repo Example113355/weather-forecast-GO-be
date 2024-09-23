@@ -71,7 +71,7 @@ MIDDLEWARE = [
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
-    "https://weather-forecast-go.vercel.app/",
+    "https://weather-forecast-go.vercel.app",
 ]
 
 ROOT_URLCONF = 'weather.urls'

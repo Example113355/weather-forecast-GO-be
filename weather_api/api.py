@@ -27,9 +27,9 @@ class WeatherController:
     @staticmethod
     @router.post("/register/verify-code", response=bool)
     def verify_code(request: HttpRequest, payload: EmailCodeSchema):
-        return WeatherController.service.verify_code(payload.email, payload.code, type="register")
+        return WeatherController.service.verify_code(payload.email, payload.code, type="register", locations=payload.locations)
     
     @staticmethod
     @router.post("/unsubscribe/verify-code", response=bool)
     def unsubscribe(request: HttpRequest, payload: EmailCodeSchema):
-        return WeatherController.service.verify_code(payload.email, payload.code, type="unsubscribe")
+        return WeatherController.service.verify_code(payload.email, payload.code, type="unsubscribe", locations=payload.locations)

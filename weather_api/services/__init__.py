@@ -52,7 +52,9 @@ class WeatherService:
             raise EmailCodeNotMatch()
         
         if type == "register":
-            email_locations = [EmailLocation(email=email, location=location) for location in locations]
+            existing_locations = EmailLocation.objects.filter(email=email, location__in=locations).values_list('location', flat=True)
+            new_locations = [location for location in locations if location not in existing_locations]
+            email_locations = [EmailLocation(email=email, location=location) for location in new_locations]
             EmailLocation.objects.bulk_create(email_locations)
 
         else:
